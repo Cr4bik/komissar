@@ -1,0 +1,79 @@
+﻿<Window x:Class="komissar.sxema1"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:komissar"
+        ResizeMode="NoResize"
+        WindowStartupLocation="CenterScreen"
+        mc:Ignorable="d"
+        Title="sxema1" Height="638" Width="773">
+    <Grid Margin="0,0,0,5">
+
+        <!-- Грузовой автомобиль -->
+        <Grid x:Name="TruckContainerGrid" Margin="0,0,0,162" HorizontalAlignment="Left" Width="748" Visibility="Collapsed">
+            <Image x:Name="TruckImage"
+                   Source="Images/truck-scheme.jpg"
+                   Stretch="Uniform"
+                   VerticalAlignment="Top"
+                   HorizontalAlignment="Center"
+                   Width="748" Height="474"/>
+            <Canvas x:Name="TruckDamageCanvas"
+                    Background="Transparent"
+                    MouseLeftButtonDown="TruckDamageCanvas_MouseLeftButtonDown"
+                    IsHitTestVisible="True" Height="471"
+                    VerticalAlignment="Center" HorizontalAlignment="Left" Width="658"/>
+        </Grid>
+
+        <!-- Легковой автомобиль -->
+        <Grid x:Name="CarContainerGrid" Margin="0,0,0,223" HorizontalAlignment="Left" Width="641" Visibility="Collapsed">
+            <Image x:Name="CarImage"
+                   Source="Images/car-scheme.jpg"
+                   Stretch="Uniform"
+                   VerticalAlignment="Top"
+                   HorizontalAlignment="Center"
+                   Width="665" Height="433"/>
+            <Canvas x:Name="CarDamageCanvas"
+                    Background="Transparent"
+                    MouseLeftButtonDown="CarDamageCanvas_MouseLeftButtonDown"
+                    IsHitTestVisible="True" Height="387"
+                    VerticalAlignment="Center" HorizontalAlignment="Left" Width="608" Margin="23,0,0,0"/>
+        </Grid>
+
+        <!-- Мотоцикл -->
+        <Grid x:Name="MotoContainerGrid" Margin="0,0,0,149" HorizontalAlignment="Left" Width="346" Visibility="Visible" Background="White">
+            <Image x:Name="MotoImage"
+                   Source="Images/moto-scheme.jpg"
+                   Stretch="Uniform"
+                   VerticalAlignment="Center" Height="441" Margin="1,0,-1,0"/>
+            <Canvas x:Name="MotoDamageCanvas"
+                    Background="Transparent"
+                    MouseLeftButtonDown="MotoDamageCanvas_MouseLeftButtonDown"
+                    IsHitTestVisible="True" Height="468"
+                    VerticalAlignment="Center" HorizontalAlignment="Center" Width="346"/>
+        </Grid>
+
+        <!-- Выбор типа ТС -->
+        <ComboBox x:Name="VehicleTypeComboBox" SelectedIndex="0"
+                  Margin="10,491,0,0" Height="24"
+                  VerticalAlignment="Top" HorizontalAlignment="Left" Width="200"
+                  SelectionChanged="VehicleTypeComboBox_SelectionChanged">
+            <ComboBoxItem Content="Легковой автомобиль" Tag="car"/>
+            <ComboBoxItem Content="Грузовой автомобиль" Tag="truck"/>
+            <ComboBoxItem Content="Мотоцикл" Tag="moto"/>
+        </ComboBox>
+
+        <!-- Элементы управления -->
+        <TextBlock Text="Тип повреждения:" VerticalAlignment="Top" Margin="29,433,815,0"/>
+        <ComboBox x:Name="DamageTypeComboBox" SelectedIndex="0" Margin="152,538,0,0" Height="25"
+                  VerticalAlignment="Top" HorizontalAlignment="Left" Width="168">
+            <ComboBoxItem Content="Легкое (оранжевый)" Tag="Orange"/>
+            <ComboBoxItem Content="Сильное (красный)" Tag="Red"/>
+        </ComboBox>
+        <Button Content="Сохранить схему" Width="150" Height="30"
+                Margin="598,533,0,0" HorizontalAlignment="Left" VerticalAlignment="Top"
+                Click="SaveSchema_Click"/>
+        <Label Content="Степень повреждения:" HorizontalAlignment="Left" Margin="10,536,0,0" VerticalAlignment="Top"/>
+
+    </Grid>
+</Window>
