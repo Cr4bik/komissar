@@ -5,6 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:komissar"
         mc:Ignorable="d"
+        ResizeMode="NoResize"
+        WindowStartupLocation="CenterScreen"
         Title="Отчёт о ДТП" Height="1250" Width="1200">
     <ScrollViewer VerticalScrollBarVisibility="Auto">
         <Grid Margin="20" x:Name="MainGrid">
@@ -69,8 +71,8 @@
                 </StackPanel>
 
                 <!-- Схема ДТП -->
-                <GroupBox Header="Схема ДТП" Margin="0,10">
-                    <Image x:Name="DTPImage" Height="250" Margin="5" Stretch="Uniform"/>
+                <GroupBox Header="Схема ДТП" Margin="0,10" Height="294">
+                    <Image x:Name="DTPImage" Height="258" Margin="11,0,12,0" Stretch="None"/>
                 </GroupBox>
 
                 <!-- Повреждения и заметки -->

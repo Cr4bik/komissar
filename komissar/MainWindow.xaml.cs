@@ -550,7 +550,6 @@ namespace komissar
             {
                 double offsetX = pos.X - startPoint.X;
                 double offsetY = pos.Y - startPoint.Y;
-                startPoint = pos;
 
                 if (Keyboard.IsKeyDown(Key.LeftShift) || Keyboard.IsKeyDown(Key.RightShift))
                 {
@@ -561,10 +560,15 @@ namespace komissar
                         selectedElement.RenderTransform = rotate;
                         selectedElement.RenderTransformOrigin = new Point(0.5, 0.5);
                     }
-                    rotate.Angle += 5;
+
+                    double angleDelta = offsetX * 0.8; // сглаженное и ускоренное вращение (0.8 — коэффициент чувствительности)
+                    rotate.Angle += angleDelta;
+
+                    startPoint = pos; // обновляем стартовую точку после вращения
                 }
                 else
                 {
+                    // Обычное перемещение
                     double left = Canvas.GetLeft(selectedElement);
                     double top = Canvas.GetTop(selectedElement);
 
@@ -573,7 +577,10 @@ namespace komissar
 
                     Canvas.SetLeft(selectedElement, left + offsetX);
                     Canvas.SetTop(selectedElement, top + offsetY);
+
+                    startPoint = pos;
                 }
+
                 return;
             }
 
@@ -618,11 +625,17 @@ namespace komissar
                 selectedElement = null;
             }
         }
-
         private void SaveCanvasAsJpg(object sender, RoutedEventArgs e)
         {
-            RenderTargetBitmap rtb = new RenderTargetBitmap((int)DrawingCanvas.ActualWidth, (int)DrawingCanvas.ActualHeight, 96d, 96d, PixelFormats.Pbgra32);
-            rtb.Render(DrawingCanvas);
+            // Рендерим весь Border, включая рамку и Canvas внутри
+            Size size = new Size(BorderWithCanvas.ActualWidth, BorderWithCanvas.ActualHeight);
+            BorderWithCanvas.Measure(size);
+            BorderWithCanvas.Arrange(new Rect(size));
+
+            RenderTargetBitmap rtb = new RenderTargetBitmap(
+                (int)size.Width, (int)size.Height,
+                96d, 96d, PixelFormats.Pbgra32);
+            rtb.Render(BorderWithCanvas); // <-- теперь рендерим Border!
 
             JpegBitmapEncoder encoder = new JpegBitmapEncoder();
             encoder.Frames.Add(BitmapFrame.Create(rtb));
@@ -633,7 +646,7 @@ namespace komissar
                 encoder.Save(fs);
             }
 
-            MessageBox.Show("Схема сохранена!");
+            MessageBox.Show("Схема сохранена с рамкой!");
         }
 
 
@@ -654,6 +667,11 @@ namespace komissar
         {
             ReportWindow reportWindow = new ReportWindow();
             reportWindow.Show();
+        }
+
+        private void CbCategory2_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
         }
     }
 }
