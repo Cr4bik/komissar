@@ -5,208 +5,243 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:komissar"
         mc:Ignorable="d"
-        ResizeMode="NoResize"
+        ResizeMode="CanResize"
+        Background="#e0e0e0"
         WindowStartupLocation="CenterScreen"
         Title="MainWindow" Height="1051" Width="1392"
         KeyDown="Window_KeyDown">
-    <Grid  Margin="10,-6,10,0" Height="1032" VerticalAlignment="Top" RenderTransformOrigin="0.491,0.453">
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition/>
-            <ColumnDefinition Width="0*"/>
-        </Grid.ColumnDefinitions>
 
-        <Canvas Name="DetailsCanvas" Margin="1,52,19,845">
-            <TextBlock Canvas.Left="10" Canvas.Top="29" Text="Место ДТП:" FontSize="14" FontWeight="Bold" HorizontalAlignment="Left" VerticalAlignment="Center"/>
-            <TextBox x:Name="TbLocation" Canvas.Left="100" Canvas.Top="29" TextWrapping="Wrap" Width="862" Height="19" HorizontalAlignment="Left" VerticalAlignment="Center"/>
-            <TextBlock Canvas.Left="10" Canvas.Top="59" Text="Дата ДТП:" FontSize="14" FontWeight="Bold" RenderTransformOrigin="0.757,-0.948" HorizontalAlignment="Center" VerticalAlignment="Top"/>
+    <Window.Resources>
+        <Style TargetType="TextBlock">
+            <Setter Property="Foreground" Value="#333"/>
+        </Style>
+        <Style TargetType="TextBox">
+            <Setter Property="FontSize" Value="13"/>
+            <Setter Property="Margin" Value="0,2,0,2"/>
+        </Style>
+        <Style TargetType="ComboBox">
+            <Setter Property="FontSize" Value="13"/>
+            <Setter Property="Margin" Value="0,2,0,2"/>
+        </Style>
+        <Style TargetType="Button">
+            <Setter Property="Background" Value="#007ACC"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="Padding" Value="5,2"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Margin" Value="5"/>
+            <Setter Property="Cursor" Value="Hand"/>
+        </Style>
+        <Style TargetType="Label">
+            <Setter Property="Foreground" Value="#333"/>
+        </Style>
+    </Window.Resources>
+    <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
+        <Viewbox Stretch="Uniform">
+            <Grid Width="1392" Height="1051" RenderTransformOrigin="0.491,0.453">
+            <Grid.Background>
+                <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                    <GradientStop Color="#ffffff" Offset="0" />
+                    <GradientStop Color="#e0e0e0" Offset="1" />
+                </LinearGradientBrush>
+            </Grid.Background>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition Width="0*"/>
+            </Grid.ColumnDefinitions>
 
-            <TextBlock Canvas.Left="10" Canvas.Top="92" Text="Свидетели ДТП:" FontSize="14" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-            <TextBox x:Name="TbWatchers" Canvas.Left="136" Canvas.Top="92" TextWrapping="Wrap" Width="824" HorizontalAlignment="Left" VerticalAlignment="Center" Height="19"/>
-            <TextBox x:Name="TbDate" Canvas.Left="100" TextWrapping="Wrap" Canvas.Top="59" Width="860" HorizontalAlignment="Left" VerticalAlignment="Center"/>
-        </Canvas>
-        <Canvas Margin="10,183,0,0" Height="830" VerticalAlignment="Top" HorizontalAlignment="Left" Width="426">
-            <TextBlock Text="Транспортное средство &quot;А&quot;:" FontSize="16" FontWeight="Bold" Canvas.Left="10" Canvas.Top="10"/>
+            <Canvas Name="DetailsCanvas" Margin="1,52,19,845">
+                <TextBlock Canvas.Left="10" Canvas.Top="29" Text="Место ДТП:" FontSize="14" FontWeight="Bold" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                <TextBox x:Name="TbLocation" Canvas.Left="100" Canvas.Top="29" TextWrapping="Wrap" Width="862" Height="19" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                <TextBlock Canvas.Left="10" Canvas.Top="59" Text="Дата ДТП:" FontSize="14" FontWeight="Bold" RenderTransformOrigin="0.757,-0.948" HorizontalAlignment="Center" VerticalAlignment="Top"/>
 
-            <TextBlock Text="Модель:" FontSize="14" FontWeight="Bold" Canvas.Left="203" Canvas.Top="50" HorizontalAlignment="Left" VerticalAlignment="Top"/>
-            <TextBlock Text="Марка:" FontSize="14" FontWeight="Bold" Canvas.Left="10" Canvas.Top="50" HorizontalAlignment="Center" VerticalAlignment="Top"/>
+                <TextBlock Canvas.Left="10" Canvas.Top="92" Text="Свидетели ДТП:" FontSize="14" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                <TextBox x:Name="TbWatchers" Canvas.Left="136" Canvas.Top="92" TextWrapping="Wrap" Width="824" HorizontalAlignment="Left" VerticalAlignment="Center" Height="19"/>
+                <TextBox x:Name="TbDate" Canvas.Left="100" TextWrapping="Wrap" Canvas.Top="59" Width="860" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+            </Canvas>
+            <Canvas Margin="10,183,956,34">
+                <TextBlock Text="Транспортное средство &quot;А&quot;:" FontSize="16" FontWeight="Bold" Canvas.Left="10" Canvas.Top="10"/>
 
-
-            <TextBlock Text="VIN ТС:" FontSize="14" FontWeight="Bold" Canvas.Left="10" Canvas.Top="83"/>
-            <TextBox x:Name="TbVIN1" Canvas.Left="10" Canvas.Top="107" TextWrapping="Wrap" Width="259" HorizontalAlignment="Left" VerticalAlignment="Center"/>
-
-            <TextBlock Text="Гос. регистрационный знак ТС:" FontSize="14" FontWeight="Bold" Canvas.Left="10" Canvas.Top="132" HorizontalAlignment="Left" VerticalAlignment="Center"/>
-            <TextBox x:Name="TbSign1" Canvas.Left="10" Canvas.Top="156" TextWrapping="Wrap" Width="260" HorizontalAlignment="Center" VerticalAlignment="Top"/>
-
-            <TextBlock Text="Свид. о регистрации ТС (серия, номер):" FontSize="14" FontWeight="Bold" Canvas.Left="10" Canvas.Top="179" HorizontalAlignment="Center" VerticalAlignment="Top" Width="274"/>
-            <TextBox x:Name="TbReg1" Canvas.Left="9" Canvas.Top="203" TextWrapping="Wrap" Width="260" HorizontalAlignment="Left" VerticalAlignment="Top"/>
-
-            <TextBlock Text="Собственник ТС:" FontSize="14" FontWeight="Bold" Canvas.Left="10" Canvas.Top="226" HorizontalAlignment="Center" VerticalAlignment="Top"/>
-            <TextBox x:Name="TbOwner1" Canvas.Left="76" Canvas.Top="250" TextWrapping="Wrap" Width="331" Height="21" HorizontalAlignment="Left" VerticalAlignment="Center"/>
-            <TextBox x:Name="TbOwnAddress1" Canvas.Left="76" Canvas.Top="279" TextWrapping="Wrap" Width="331" Height="21" HorizontalAlignment="Left" VerticalAlignment="Top"/>
-
-            <TextBlock Text="Водитель ТС:" FontSize="14" FontWeight="Bold" Canvas.Left="10" Canvas.Top="305" HorizontalAlignment="Center" VerticalAlignment="Top"/>
-            <TextBox x:Name="TbDriver1" Canvas.Left="76" Canvas.Top="329" TextWrapping="Wrap" Width="331" Height="23" HorizontalAlignment="Left" VerticalAlignment="Center"/>
-            <TextBox x:Name="TbDrvPhone1" Canvas.Left="270" Canvas.Top="385" TextWrapping="Wrap" Width="137" Height="23" HorizontalAlignment="Left" VerticalAlignment="Center"/>
-            <TextBox x:Name="TbDrvAddress1" Canvas.Left="76" Canvas.Top="357" TextWrapping="Wrap" Width="331" Height="23" HorizontalAlignment="Left" VerticalAlignment="Center"/>
-            <TextBox x:Name="TbDrvDate1" Canvas.Left="76" Canvas.Top="385" TextWrapping="Wrap" Width="137" Height="23" HorizontalAlignment="Left" VerticalAlignment="Center"/>
-
-            <!-- ... (Add other elements similarly, adjusting Canvas.Left and Canvas.Top) ... -->
-
-            <TextBlock Text="Водительское удостоверение (серия, номер):" FontSize="14" FontWeight="Bold" Canvas.Left="11" Canvas.Top="408" HorizontalAlignment="Left" VerticalAlignment="Top"/>
-            <TextBox x:Name="TbDrvYd1" Canvas.Left="9" Canvas.Top="428" TextWrapping="Wrap" Width="398" HorizontalAlignment="Center" VerticalAlignment="Top"/>
-
-            <TextBlock Text="Категория:" FontSize="14" FontWeight="Bold" Canvas.Left="10" Canvas.Top="454" HorizontalAlignment="Center" VerticalAlignment="Top"/>
-            <ComboBox x:Name="CbCategory" Canvas.Left="89" Canvas.Top="452" Width="100">
-                <ComboBoxItem Content="A"/>
-                <ComboBoxItem Content="B"/>
-                <ComboBoxItem Content="C"/>
-            </ComboBox>
-
-            <TextBlock Text="Дата выдачи ВУ:" FontSize="14" FontWeight="Bold" Canvas.Left="200" Canvas.Top="454"/>
-
-            <TextBlock Text="Документ на право владения, пользования, распоряжения ТС:" FontWeight="Bold" Canvas.Left="10" Canvas.Top="478" HorizontalAlignment="Center" VerticalAlignment="Top"/>
-            <TextBox x:Name="TbDoc1" Canvas.Left="7" Canvas.Top="499" TextWrapping="Wrap" Width="400" Height="24" HorizontalAlignment="Left" VerticalAlignment="Top"/>
-
-            <TextBlock Text="Страховщик (наименование):" FontSize="14" FontWeight="Bold" Canvas.Left="10" Canvas.Top="528" HorizontalAlignment="Center" VerticalAlignment="Top"/>
-            <TextBox x:Name="TbStrax1" Canvas.Left="10" Canvas.Top="552" TextWrapping="Wrap" Width="200" HorizontalAlignment="Left" VerticalAlignment="Top"/>
-
-            <TextBlock Text="Страховой полис:" FontSize="14" FontWeight="Bold" Canvas.Left="244" Canvas.Top="528"/>
-            <TextBox x:Name="TbStraxPol1" Canvas.Left="239" Canvas.Top="552" TextWrapping="Wrap" Width="150" HorizontalAlignment="Left" VerticalAlignment="Top"/>
-
-            <TextBlock Text="Действителен до:" FontSize="14" FontWeight="Bold" Canvas.Left="10" Canvas.Top="575" HorizontalAlignment="Left" VerticalAlignment="Top"/>
-
-            <TextBlock Text="ТС застраховано от ущерба:" FontSize="14" FontWeight="Bold" Canvas.Left="167" Canvas.Top="575" HorizontalAlignment="Left" VerticalAlignment="Center"/>
-            <TextBox x:Name="TbGotDate1" Canvas.Left="320" TextWrapping="Wrap" Canvas.Top="455" Width="87" HorizontalAlignment="Left" VerticalAlignment="Top"/>
-            <TextBox x:Name="TbValidDate1" Canvas.Left="10" TextWrapping="Wrap" Canvas.Top="599" Width="119" HorizontalAlignment="Left" VerticalAlignment="Center"/>
-
-            <TextBlock Text="Место первоначального удара:" FontSize="14" FontWeight="Bold" Canvas.Left="10" Canvas.Top="622" HorizontalAlignment="Left" VerticalAlignment="Center"/>
-            <Button Content="Открыть форму" Canvas.Left="232" Canvas.Top="622" HorizontalAlignment="Center" VerticalAlignment="Top" Click="Button_Click"/>
-            <TextBlock Text="Характер и перечень видимых поврежденных деталей и элементов:" FontWeight="Bold" Canvas.Left="10" Canvas.Top="646" HorizontalAlignment="Center" VerticalAlignment="Top"/>
-            <TextBox x:Name="TbDiscription1" TextWrapping="Wrap" Canvas.Left="9" Canvas.Top="667" Height="64" HorizontalAlignment="Left" VerticalAlignment="Top" Width="400"/>
-            <TextBlock Text="Замечания:" FontSize="14" FontWeight="Bold" Canvas.Left="10" Canvas.Top="736" HorizontalAlignment="Center" VerticalAlignment="Top"/>
-            <TextBox x:Name="TbComment1" TextWrapping="Wrap" Canvas.Left="10" Canvas.Top="760" Height="60" HorizontalAlignment="Left" VerticalAlignment="Top" Width="400"/>
-            <ComboBox x:Name="cbBrand1" SelectionChanged="cbBrand_SelectionChanged" Canvas.Left="64" Canvas.Top="50" Width="120" HorizontalAlignment="Center" VerticalAlignment="Top"/>
-            <ComboBox x:Name="cbModel1" IsEnabled="False"  Canvas.Left="266" Canvas.Top="50" Width="120" HorizontalAlignment="Center" VerticalAlignment="Top"/>
-            <Label Content="ФИО" Canvas.Left="10" Canvas.Top="248" HorizontalAlignment="Left" VerticalAlignment="Center" FontWeight="Bold"/>
-            <Label Content="Адрес" Canvas.Left="10" Canvas.Top="274" HorizontalAlignment="Left" VerticalAlignment="Center" FontWeight="Bold"/>
-            <Label Content="ФИО" Canvas.Left="10" Canvas.Top="329" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Top"/>
-            <Label Content="Дата рож." Canvas.Left="2" Canvas.Top="384" FontWeight="Bold" HorizontalAlignment="Left" VerticalAlignment="Top"/>
-            <Label Content="Адрес" Canvas.Left="11" Canvas.Top="356" FontWeight="Bold" HorizontalAlignment="Left" VerticalAlignment="Top"/>
-            <Label Content="Телефон" Canvas.Left="211" Canvas.Top="384" FontWeight="Bold" HorizontalAlignment="Left" VerticalAlignment="Center"/>
-            <ComboBox x:Name="CbTF1" Canvas.Left="167" Canvas.Top="594" Width="54" HorizontalAlignment="Center" VerticalAlignment="Top" Height="23">
-                <ComboBoxItem Content="Да"/>
-                <ComboBoxItem Content="Нет"/>
-            </ComboBox>
-        </Canvas>
-        <Label Content="Извещение о дорожно-транспортном происшествии" HorizontalAlignment="Center" Margin="0,25,0,0" VerticalAlignment="Top" FontWeight="Bold" FontSize="20" Height="37" Width="532"/>
-        <Button x:Name="BtnAddData" Content="Отправить данные" HorizontalAlignment="Left" Margin="598,969,0,0" VerticalAlignment="Top" Height="44" Width="158" Click="BtnAddData_Click_1"/>
-        <Canvas Margin="936,183,0,0" Height="830" VerticalAlignment="Top" HorizontalAlignment="Left" Width="426">
-            <TextBlock Text="Транспортное средство &quot;B&quot;:" FontSize="16" FontWeight="Bold" Canvas.Left="10" Canvas.Top="10"/>
-
-            <TextBlock Text="Модель:" FontSize="14" FontWeight="Bold" Canvas.Left="203" Canvas.Top="50" HorizontalAlignment="Left" VerticalAlignment="Top"/>
-            <TextBlock Text="Марка:" FontSize="14" FontWeight="Bold" Canvas.Left="10" Canvas.Top="50" HorizontalAlignment="Center" VerticalAlignment="Top"/>
+                <TextBlock Text="Модель:" FontSize="14" FontWeight="Bold" Canvas.Left="203" Canvas.Top="50" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+                <TextBlock Text="Марка:" FontSize="14" FontWeight="Bold" Canvas.Left="10" Canvas.Top="50" HorizontalAlignment="Center" VerticalAlignment="Top"/>
 
 
-            <TextBlock Text="VIN ТС:" FontSize="14" FontWeight="Bold" Canvas.Left="10" Canvas.Top="83"/>
-            <TextBox x:Name="TbVIN2" Canvas.Left="10" Canvas.Top="107" TextWrapping="Wrap" Width="259" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                <TextBlock Text="VIN ТС:" FontSize="14" FontWeight="Bold" Canvas.Left="10" Canvas.Top="83"/>
+                <TextBox x:Name="TbVIN1" Canvas.Left="10" Canvas.Top="107" TextWrapping="Wrap" Width="259" HorizontalAlignment="Left" VerticalAlignment="Center"/>
 
-            <TextBlock Text="Гос. регистрационный знак ТС:" FontSize="14" FontWeight="Bold" Canvas.Left="10" Canvas.Top="132" HorizontalAlignment="Left" VerticalAlignment="Center"/>
-            <TextBox x:Name="TbSign2" Canvas.Left="10" Canvas.Top="156" TextWrapping="Wrap" Width="260" HorizontalAlignment="Center" VerticalAlignment="Top"/>
+                <TextBlock Text="Гос. регистрационный знак ТС:" FontSize="14" FontWeight="Bold" Canvas.Left="10" Canvas.Top="132" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                <TextBox x:Name="TbSign1" Canvas.Left="10" Canvas.Top="156" TextWrapping="Wrap" Width="260" HorizontalAlignment="Center" VerticalAlignment="Top"/>
 
-            <TextBlock Text="Свид. о регистрации ТС (серия, номер):" FontSize="14" FontWeight="Bold" Canvas.Left="10" Canvas.Top="179" HorizontalAlignment="Center" VerticalAlignment="Top" Width="274"/>
-            <TextBox x:Name="TbReg2" Canvas.Left="9" Canvas.Top="203" TextWrapping="Wrap" Width="260" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+                <TextBlock Text="Свид. о регистрации ТС (серия, номер):" FontSize="14" FontWeight="Bold" Canvas.Left="10" Canvas.Top="179" HorizontalAlignment="Center" VerticalAlignment="Top" Width="274"/>
+                <TextBox x:Name="TbReg1" Canvas.Left="9" Canvas.Top="203" TextWrapping="Wrap" Width="260" HorizontalAlignment="Left" VerticalAlignment="Top"/>
 
-            <TextBlock Text="Собственник ТС:" FontSize="14" FontWeight="Bold" Canvas.Left="10" Canvas.Top="226" HorizontalAlignment="Center" VerticalAlignment="Top"/>
-            <TextBox x:Name="TbOwner2" Canvas.Left="76" Canvas.Top="250" TextWrapping="Wrap" Width="331" Height="21" HorizontalAlignment="Left" VerticalAlignment="Center"/>
-            <TextBox x:Name="TbOwnAddress2" Canvas.Left="76" Canvas.Top="279" TextWrapping="Wrap" Width="331" Height="21" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+                <TextBlock Text="Собственник ТС:" FontSize="14" FontWeight="Bold" Canvas.Left="10" Canvas.Top="226" HorizontalAlignment="Center" VerticalAlignment="Top"/>
+                <TextBox x:Name="TbOwner1" Canvas.Left="76" Canvas.Top="250" TextWrapping="Wrap" Width="331" Height="21" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                <TextBox x:Name="TbOwnAddress1" Canvas.Left="76" Canvas.Top="279" TextWrapping="Wrap" Width="331" Height="21" HorizontalAlignment="Left" VerticalAlignment="Top"/>
 
-            <TextBlock Text="Водитель ТС:" FontSize="14" FontWeight="Bold" Canvas.Left="10" Canvas.Top="305" HorizontalAlignment="Center" VerticalAlignment="Top"/>
-            <TextBox x:Name="TbDriver2" Canvas.Left="76" Canvas.Top="329" TextWrapping="Wrap" Width="331" Height="23" HorizontalAlignment="Left" VerticalAlignment="Center"/>
-            <TextBox x:Name="TbDrvPhone2" Canvas.Left="270" Canvas.Top="385" TextWrapping="Wrap" Width="137" Height="23" HorizontalAlignment="Left" VerticalAlignment="Center"/>
-            <TextBox x:Name="TbDrvAddress2" Canvas.Left="76" Canvas.Top="357" TextWrapping="Wrap" Width="331" Height="23" HorizontalAlignment="Left" VerticalAlignment="Center"/>
-            <TextBox x:Name="TbDrvDate2" Canvas.Left="76" Canvas.Top="385" TextWrapping="Wrap" Width="137" Height="23" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                <TextBlock Text="Водитель ТС:" FontSize="14" FontWeight="Bold" Canvas.Left="10" Canvas.Top="305" HorizontalAlignment="Center" VerticalAlignment="Top"/>
+                <TextBox x:Name="TbDriver1" Canvas.Left="76" Canvas.Top="329" TextWrapping="Wrap" Width="331" Height="23" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                <TextBox x:Name="TbDrvPhone1" Canvas.Left="270" Canvas.Top="385" TextWrapping="Wrap" Width="137" Height="23" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                <TextBox x:Name="TbDrvAddress1" Canvas.Left="76" Canvas.Top="357" TextWrapping="Wrap" Width="331" Height="23" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                <TextBox x:Name="TbDrvDate1" Canvas.Left="76" Canvas.Top="385" TextWrapping="Wrap" Width="137" Height="23" HorizontalAlignment="Left" VerticalAlignment="Center"/>
 
-            <!-- ... (Add other elements similarly, adjusting Canvas.Left and Canvas.Top) ... -->
+                <!-- ... (Add other elements similarly, adjusting Canvas.Left and Canvas.Top) ... -->
 
-            <TextBlock Text="Водительское удостоверение (серия, номер):" FontSize="14" FontWeight="Bold" Canvas.Left="11" Canvas.Top="408" HorizontalAlignment="Left" VerticalAlignment="Top"/>
-            <TextBox x:Name="TbDrvYd2" Canvas.Left="9" Canvas.Top="428" TextWrapping="Wrap" Width="398" HorizontalAlignment="Center" VerticalAlignment="Top"/>
+                <TextBlock Text="Водительское удостоверение (серия, номер):" FontSize="14" FontWeight="Bold" Canvas.Left="11" Canvas.Top="408" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+                <TextBox x:Name="TbDrvYd1" Canvas.Left="9" Canvas.Top="428" TextWrapping="Wrap" Width="398" HorizontalAlignment="Center" VerticalAlignment="Top"/>
 
-            <TextBlock Text="Категория:" FontSize="14" FontWeight="Bold" Canvas.Left="10" Canvas.Top="454" HorizontalAlignment="Center" VerticalAlignment="Top"/>
-            <ComboBox x:Name="CbCategory2" Canvas.Left="89" Canvas.Top="453" Width="100" SelectionChanged="CbCategory2_SelectionChanged">
-                <ComboBoxItem Content="A"/>
-                <ComboBoxItem Content="B"/>
-                <ComboBoxItem Content="C"/>
-            </ComboBox>
+                <TextBlock Text="Категория:" FontSize="14" FontWeight="Bold" Canvas.Left="10" Canvas.Top="454" HorizontalAlignment="Center" VerticalAlignment="Top"/>
+                <ComboBox x:Name="CbCategory" Canvas.Left="89" Canvas.Top="452" Width="100">
+                    <ComboBoxItem Content="A"/>
+                    <ComboBoxItem Content="B"/>
+                    <ComboBoxItem Content="C"/>
+                </ComboBox>
 
-            <TextBlock Text="Дата выдачи ВУ:" FontSize="14" FontWeight="Bold" Canvas.Left="200" Canvas.Top="454"/>
+                <TextBlock Text="Дата выдачи ВУ:" FontSize="14" FontWeight="Bold" Canvas.Left="200" Canvas.Top="454"/>
 
-            <TextBlock Text="Документ на право владения, пользования, распоряжения ТС:" FontWeight="Bold" Canvas.Left="10" Canvas.Top="478" HorizontalAlignment="Center" VerticalAlignment="Top"/>
-            <TextBox x:Name="TbDoc2" Canvas.Left="7" Canvas.Top="499" TextWrapping="Wrap" Width="400" Height="24" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+                <TextBlock Text="Документ на право владения, пользования, распоряжения ТС:" FontWeight="Bold" Canvas.Left="10" Canvas.Top="478" HorizontalAlignment="Center" VerticalAlignment="Top"/>
+                <TextBox x:Name="TbDoc1" Canvas.Left="7" Canvas.Top="499" TextWrapping="Wrap" Width="400" Height="24" HorizontalAlignment="Left" VerticalAlignment="Top"/>
 
-            <TextBlock Text="Страховщик (наименование):" FontSize="14" FontWeight="Bold" Canvas.Left="10" Canvas.Top="528" HorizontalAlignment="Center" VerticalAlignment="Top"/>
-            <TextBox x:Name="TbStrax2" Canvas.Left="10" Canvas.Top="552" TextWrapping="Wrap" Width="200" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+                <TextBlock Text="Страховщик (наименование):" FontSize="14" FontWeight="Bold" Canvas.Left="10" Canvas.Top="528" HorizontalAlignment="Center" VerticalAlignment="Top"/>
+                <TextBox x:Name="TbStrax1" Canvas.Left="10" Canvas.Top="552" TextWrapping="Wrap" Width="200" HorizontalAlignment="Left" VerticalAlignment="Top"/>
 
-            <TextBlock Text="Страховой полис:" FontSize="14" FontWeight="Bold" Canvas.Left="244" Canvas.Top="528"/>
-            <TextBox x:Name="TbStraxPol2" Canvas.Left="239" Canvas.Top="552" TextWrapping="Wrap" Width="150" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+                <TextBlock Text="Страховой полис:" FontSize="14" FontWeight="Bold" Canvas.Left="244" Canvas.Top="528"/>
+                <TextBox x:Name="TbStraxPol1" Canvas.Left="239" Canvas.Top="552" TextWrapping="Wrap" Width="150" HorizontalAlignment="Left" VerticalAlignment="Top"/>
 
-            <TextBlock Text="Действителен до:" FontSize="14" FontWeight="Bold" Canvas.Left="10" Canvas.Top="575" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+                <TextBlock Text="Действителен до:" FontSize="14" FontWeight="Bold" Canvas.Left="10" Canvas.Top="575" HorizontalAlignment="Left" VerticalAlignment="Top"/>
 
-            <TextBlock Text="ТС застраховано от ущерба:" FontSize="14" FontWeight="Bold" Canvas.Left="174" Canvas.Top="575" HorizontalAlignment="Center" VerticalAlignment="Top"/>
-            <TextBox x:Name="TbGotDate2" Canvas.Left="320" TextWrapping="Wrap" Canvas.Top="455" Width="87" HorizontalAlignment="Left" VerticalAlignment="Top"/>
-            <TextBox x:Name="TbValidDate2" Canvas.Left="10" TextWrapping="Wrap" Canvas.Top="599" Width="119" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                <TextBlock Text="ТС застраховано от ущерба:" FontSize="14" FontWeight="Bold" Canvas.Left="167" Canvas.Top="575" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                <TextBox x:Name="TbGotDate1" Canvas.Left="320" TextWrapping="Wrap" Canvas.Top="455" Width="87" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+                <TextBox x:Name="TbValidDate1" Canvas.Left="10" TextWrapping="Wrap" Canvas.Top="599" Width="119" HorizontalAlignment="Left" VerticalAlignment="Center"/>
 
-            <TextBlock Text="Место первоначального удара:" FontSize="14" FontWeight="Bold" Canvas.Left="10" Canvas.Top="622" HorizontalAlignment="Left" VerticalAlignment="Center"/>
-            <Button Content="Открыть форму" Canvas.Left="232" Canvas.Top="622" HorizontalAlignment="Center" VerticalAlignment="Top" Click="Button_Click_1"/>
-            <TextBlock Text="Характер и перечень видимых поврежденных деталей и элементов:" FontWeight="Bold" Canvas.Left="10" Canvas.Top="646" HorizontalAlignment="Center" VerticalAlignment="Top"/>
-            <TextBox x:Name="TbDiscription2" TextWrapping="Wrap" Canvas.Left="9" Canvas.Top="667" Height="64" HorizontalAlignment="Left" VerticalAlignment="Top" Width="400"/>
-            <TextBlock Text="Замечания:" FontSize="14" FontWeight="Bold" Canvas.Left="10" Canvas.Top="736" HorizontalAlignment="Center" VerticalAlignment="Top"/>
-            <TextBox x:Name="TbComment2" TextWrapping="Wrap" Canvas.Left="10" Canvas.Top="760" Height="60" HorizontalAlignment="Left" VerticalAlignment="Top" Width="400"/>
-            <ComboBox x:Name="cbBrand2" SelectionChanged="cbBrand_SelectionChanged" Canvas.Left="64" Canvas.Top="50" Width="120" HorizontalAlignment="Center" VerticalAlignment="Top"/>
-            <ComboBox x:Name="cbModel2" IsEnabled="False"  Canvas.Left="266" Canvas.Top="50" Width="120" HorizontalAlignment="Center" VerticalAlignment="Top"/>
-            <Label Content="ФИО" Canvas.Left="10" Canvas.Top="248" HorizontalAlignment="Left" VerticalAlignment="Center" FontWeight="Bold"/>
-            <Label Content="Адрес" Canvas.Left="10" Canvas.Top="274" HorizontalAlignment="Left" VerticalAlignment="Center" FontWeight="Bold"/>
-            <Label Content="ФИО" Canvas.Left="10" Canvas.Top="329" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Top"/>
-            <Label Content="Дата рож." Canvas.Left="2" Canvas.Top="384" FontWeight="Bold" HorizontalAlignment="Left" VerticalAlignment="Top"/>
-            <Label Content="Адрес" Canvas.Left="11" Canvas.Top="356" FontWeight="Bold" HorizontalAlignment="Left" VerticalAlignment="Top"/>
-            <Label Content="Телефон" Canvas.Left="211" Canvas.Top="384" FontWeight="Bold" HorizontalAlignment="Left" VerticalAlignment="Center"/>
-            <ComboBox x:Name="CbTF2" Canvas.Left="179" Canvas.Top="594" HorizontalAlignment="Left" VerticalAlignment="Center" Width="53">
-                <ComboBoxItem Content="Да"/>
-                <ComboBoxItem Content="Нет"/>
-            </ComboBox>
-        </Canvas>
-        <Grid x:Name="savegridview" Margin="510,758,510,68">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="69*"/>
-                <RowDefinition Height="68*"/>
-            </Grid.RowDefinitions>
+                <TextBlock Text="Место первоначального удара:" FontSize="14" FontWeight="Bold" Canvas.Left="10" Canvas.Top="622" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                <Button Content="Открыть форму" Canvas.Left="232" Canvas.Top="622" HorizontalAlignment="Center" VerticalAlignment="Top" Click="Button_Click"/>
+                <TextBlock Text="Характер и перечень видимых поврежденных деталей и элементов:" FontWeight="Bold" Canvas.Left="10" Canvas.Top="646" HorizontalAlignment="Center" VerticalAlignment="Top"/>
+                <TextBox x:Name="TbDiscription1" TextWrapping="Wrap" Canvas.Left="9" Canvas.Top="667" Height="64" HorizontalAlignment="Left" VerticalAlignment="Top" Width="400"/>
+                <TextBlock Text="Замечания:" FontSize="14" FontWeight="Bold" Canvas.Left="10" Canvas.Top="736" HorizontalAlignment="Center" VerticalAlignment="Top"/>
+                <TextBox x:Name="TbComment1" TextWrapping="Wrap" Canvas.Left="10" Canvas.Top="760" Height="60" HorizontalAlignment="Left" VerticalAlignment="Top" Width="400"/>
+                <ComboBox x:Name="cbBrand1" SelectionChanged="cbBrand_SelectionChanged" Canvas.Left="64" Canvas.Top="50" Width="120" HorizontalAlignment="Center" VerticalAlignment="Top"/>
+                <ComboBox x:Name="cbModel1" IsEnabled="False"  Canvas.Left="266" Canvas.Top="50" Width="120" HorizontalAlignment="Center" VerticalAlignment="Top"/>
+                <Label Content="ФИО" Canvas.Left="10" Canvas.Top="248" HorizontalAlignment="Left" VerticalAlignment="Center" FontWeight="Bold"/>
+                <Label Content="Адрес" Canvas.Left="10" Canvas.Top="274" HorizontalAlignment="Left" VerticalAlignment="Center" FontWeight="Bold"/>
+                <Label Content="ФИО" Canvas.Left="10" Canvas.Top="329" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Top"/>
+                <Label Content="Дата рож." Canvas.Left="2" Canvas.Top="384" FontWeight="Bold" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+                <Label Content="Адрес" Canvas.Left="11" Canvas.Top="356" FontWeight="Bold" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+                <Label Content="Телефон" Canvas.Left="211" Canvas.Top="384" FontWeight="Bold" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                <ComboBox x:Name="CbTF1" Canvas.Left="167" Canvas.Top="594" Width="54" HorizontalAlignment="Center" VerticalAlignment="Top" Height="23">
+                    <ComboBoxItem Content="Да"/>
+                    <ComboBoxItem Content="Нет"/>
+                </ComboBox>
+            </Canvas>
+            <Label Content="Извещение о дорожно-транспортном происшествии" HorizontalAlignment="Center" Margin="0,25,0,0" VerticalAlignment="Top" FontWeight="Bold" FontSize="20" Height="37" Width="532"/>
+            <Button x:Name="BtnAddData" Content="Отправить данные" HorizontalAlignment="Left" Margin="603,984,0,0" VerticalAlignment="Top" Height="44" Width="158" Click="BtnAddData_Click_1"/>
+            <Canvas Margin="936,183,30,34">
+                <TextBlock Text="Транспортное средство &quot;B&quot;:" FontSize="16" FontWeight="Bold" Canvas.Left="10" Canvas.Top="10"/>
 
-            <ComboBox x:Name="ShapeSelector" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,-44,0,0" Width="150" Height="30">
-                <ComboBoxItem Content="Линия" />
-                <ComboBoxItem Content="Прямоугольник" />
-                <ComboBoxItem Content="Стрелка" />
-                <ComboBoxItem Content="Буква A" />
-                <ComboBoxItem Content="Буква B" />
-                <ComboBoxItem Content="Перемещение" />
-            </ComboBox>
+                <TextBlock Text="Модель:" FontSize="14" FontWeight="Bold" Canvas.Left="203" Canvas.Top="50" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+                <TextBlock Text="Марка:" FontSize="14" FontWeight="Bold" Canvas.Left="10" Canvas.Top="50" HorizontalAlignment="Center" VerticalAlignment="Top"/>
 
-            <Button Content="Сохранить" Width="100" Height="30" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,-44,6,0" Click="SaveCanvasAsJpg" />
 
-            <Border x:Name="BorderWithCanvas"
+                <TextBlock Text="VIN ТС:" FontSize="14" FontWeight="Bold" Canvas.Left="10" Canvas.Top="83"/>
+                <TextBox x:Name="TbVIN2" Canvas.Left="10" Canvas.Top="107" TextWrapping="Wrap" Width="259" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+
+                <TextBlock Text="Гос. регистрационный знак ТС:" FontSize="14" FontWeight="Bold" Canvas.Left="10" Canvas.Top="132" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                <TextBox x:Name="TbSign2" Canvas.Left="10" Canvas.Top="156" TextWrapping="Wrap" Width="260" HorizontalAlignment="Center" VerticalAlignment="Top"/>
+
+                <TextBlock Text="Свид. о регистрации ТС (серия, номер):" FontSize="14" FontWeight="Bold" Canvas.Left="10" Canvas.Top="179" HorizontalAlignment="Center" VerticalAlignment="Top" Width="274"/>
+                <TextBox x:Name="TbReg2" Canvas.Left="9" Canvas.Top="203" TextWrapping="Wrap" Width="260" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+
+                <TextBlock Text="Собственник ТС:" FontSize="14" FontWeight="Bold" Canvas.Left="10" Canvas.Top="226" HorizontalAlignment="Center" VerticalAlignment="Top"/>
+                <TextBox x:Name="TbOwner2" Canvas.Left="76" Canvas.Top="250" TextWrapping="Wrap" Width="331" Height="21" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                <TextBox x:Name="TbOwnAddress2" Canvas.Left="76" Canvas.Top="279" TextWrapping="Wrap" Width="331" Height="21" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+
+                <TextBlock Text="Водитель ТС:" FontSize="14" FontWeight="Bold" Canvas.Left="10" Canvas.Top="305" HorizontalAlignment="Center" VerticalAlignment="Top"/>
+                <TextBox x:Name="TbDriver2" Canvas.Left="76" Canvas.Top="329" TextWrapping="Wrap" Width="331" Height="23" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                <TextBox x:Name="TbDrvPhone2" Canvas.Left="270" Canvas.Top="385" TextWrapping="Wrap" Width="137" Height="23" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                <TextBox x:Name="TbDrvAddress2" Canvas.Left="76" Canvas.Top="357" TextWrapping="Wrap" Width="331" Height="23" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                <TextBox x:Name="TbDrvDate2" Canvas.Left="76" Canvas.Top="385" TextWrapping="Wrap" Width="137" Height="23" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+
+                <!-- ... (Add other elements similarly, adjusting Canvas.Left and Canvas.Top) ... -->
+
+                <TextBlock Text="Водительское удостоверение (серия, номер):" FontSize="14" FontWeight="Bold" Canvas.Left="11" Canvas.Top="408" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+                <TextBox x:Name="TbDrvYd2" Canvas.Left="9" Canvas.Top="428" TextWrapping="Wrap" Width="398" HorizontalAlignment="Center" VerticalAlignment="Top"/>
+
+                <TextBlock Text="Категория:" FontSize="14" FontWeight="Bold" Canvas.Left="10" Canvas.Top="454" HorizontalAlignment="Center" VerticalAlignment="Top"/>
+                <ComboBox x:Name="CbCategory2" Canvas.Left="89" Canvas.Top="453" Width="100" SelectionChanged="CbCategory2_SelectionChanged">
+                    <ComboBoxItem Content="A"/>
+                    <ComboBoxItem Content="B"/>
+                    <ComboBoxItem Content="C"/>
+                </ComboBox>
+
+                <TextBlock Text="Дата выдачи ВУ:" FontSize="14" FontWeight="Bold" Canvas.Left="200" Canvas.Top="454"/>
+
+                <TextBlock Text="Документ на право владения, пользования, распоряжения ТС:" FontWeight="Bold" Canvas.Left="10" Canvas.Top="478" HorizontalAlignment="Center" VerticalAlignment="Top"/>
+                <TextBox x:Name="TbDoc2" Canvas.Left="7" Canvas.Top="499" TextWrapping="Wrap" Width="400" Height="24" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+
+                <TextBlock Text="Страховщик (наименование):" FontSize="14" FontWeight="Bold" Canvas.Left="10" Canvas.Top="528" HorizontalAlignment="Center" VerticalAlignment="Top"/>
+                <TextBox x:Name="TbStrax2" Canvas.Left="10" Canvas.Top="552" TextWrapping="Wrap" Width="200" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+
+                <TextBlock Text="Страховой полис:" FontSize="14" FontWeight="Bold" Canvas.Left="244" Canvas.Top="528"/>
+                <TextBox x:Name="TbStraxPol2" Canvas.Left="239" Canvas.Top="552" TextWrapping="Wrap" Width="150" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+
+                <TextBlock Text="Действителен до:" FontSize="14" FontWeight="Bold" Canvas.Left="10" Canvas.Top="575" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+
+                <TextBlock Text="ТС застраховано от ущерба:" FontSize="14" FontWeight="Bold" Canvas.Left="174" Canvas.Top="575" HorizontalAlignment="Center" VerticalAlignment="Top"/>
+                <TextBox x:Name="TbGotDate2" Canvas.Left="320" TextWrapping="Wrap" Canvas.Top="455" Width="87" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+                <TextBox x:Name="TbValidDate2" Canvas.Left="10" TextWrapping="Wrap" Canvas.Top="599" Width="119" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+
+                <TextBlock Text="Место первоначального удара:" FontSize="14" FontWeight="Bold" Canvas.Left="10" Canvas.Top="622" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                <Button Content="Открыть форму" Canvas.Left="232" Canvas.Top="622" HorizontalAlignment="Center" VerticalAlignment="Top" Click="Button_Click_1"/>
+                <TextBlock Text="Характер и перечень видимых поврежденных деталей и элементов:" FontWeight="Bold" Canvas.Left="10" Canvas.Top="646" HorizontalAlignment="Center" VerticalAlignment="Top"/>
+                <TextBox x:Name="TbDiscription2" TextWrapping="Wrap" Canvas.Left="9" Canvas.Top="667" Height="64" HorizontalAlignment="Left" VerticalAlignment="Top" Width="400"/>
+                <TextBlock Text="Замечания:" FontSize="14" FontWeight="Bold" Canvas.Left="10" Canvas.Top="736" HorizontalAlignment="Center" VerticalAlignment="Top"/>
+                <TextBox x:Name="TbComment2" TextWrapping="Wrap" Canvas.Left="10" Canvas.Top="760" Height="60" HorizontalAlignment="Left" VerticalAlignment="Top" Width="400"/>
+                <ComboBox x:Name="cbBrand2" SelectionChanged="cbBrand_SelectionChanged" Canvas.Left="64" Canvas.Top="50" Width="120" HorizontalAlignment="Center" VerticalAlignment="Top"/>
+                <ComboBox x:Name="cbModel2" IsEnabled="False"  Canvas.Left="266" Canvas.Top="50" Width="120" HorizontalAlignment="Center" VerticalAlignment="Top"/>
+                <Label Content="ФИО" Canvas.Left="10" Canvas.Top="248" HorizontalAlignment="Left" VerticalAlignment="Center" FontWeight="Bold"/>
+                <Label Content="Адрес" Canvas.Left="10" Canvas.Top="274" HorizontalAlignment="Left" VerticalAlignment="Center" FontWeight="Bold"/>
+                <Label Content="ФИО" Canvas.Left="10" Canvas.Top="329" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Top"/>
+                <Label Content="Дата рож." Canvas.Left="2" Canvas.Top="384" FontWeight="Bold" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+                <Label Content="Адрес" Canvas.Left="11" Canvas.Top="356" FontWeight="Bold" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+                <Label Content="Телефон" Canvas.Left="211" Canvas.Top="384" FontWeight="Bold" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                <ComboBox x:Name="CbTF2" Canvas.Left="179" Canvas.Top="594" HorizontalAlignment="Left" VerticalAlignment="Center" Width="53">
+                    <ComboBoxItem Content="Да"/>
+                    <ComboBoxItem Content="Нет"/>
+                </ComboBox>
+            </Canvas>
+            <Grid x:Name="savegridview" Margin="510,758,510,0" Height="224" VerticalAlignment="Top">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="69*"/>
+                    <RowDefinition Height="68*"/>
+                </Grid.RowDefinitions>
+
+                <ComboBox x:Name="ShapeSelector" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,-44,0,0" Width="150" Height="30">
+                    <ComboBoxItem Content="Линия" />
+                    <ComboBoxItem Content="Прямоугольник" />
+                    <ComboBoxItem Content="Стрелка" />
+                    <ComboBoxItem Content="Буква A" />
+                    <ComboBoxItem Content="Буква B" />
+                    <ComboBoxItem Content="Перемещение" />
+                </ComboBox>
+
+                <Button Content="Сохранить" Width="100" Height="30" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="266,-44,0,0" Click="SaveCanvasAsJpg" />
+
+                <Border x:Name="BorderWithCanvas"
         BorderBrush="Black"
         BorderThickness="2"
         Background="White"
-        Grid.RowSpan="2"
-        Margin="0">
-                <Canvas x:Name="DrawingCanvas"
+        Grid.RowSpan="2" HorizontalAlignment="Center" Width="372" Height="221" VerticalAlignment="Top">
+                    <Canvas x:Name="DrawingCanvas"
             Background="White"
             MouseLeftButtonDown="Canvas_MouseLeftButtonDown"
             MouseMove="Canvas_MouseMove"
-            MouseLeftButtonUp="Canvas_MouseLeftButtonUp" />
-            </Border>
+            MouseLeftButtonUp="Canvas_MouseLeftButtonUp" HorizontalAlignment="Center" Width="368" Height="217" VerticalAlignment="Bottom" />
+                </Border>
+            </Grid>
+
+
+
         </Grid>
-        <Button Content="Button" HorizontalAlignment="Left" Margin="756,553,0,0" VerticalAlignment="Top" Click="Button_Click_3"/>
-
-
-
-    </Grid>
+        </Viewbox>
+    </ScrollViewer>
 </Window>

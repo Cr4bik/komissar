@@ -7,24 +7,64 @@
         mc:Ignorable="d"
         ResizeMode="NoResize"
         WindowStartupLocation="CenterScreen"
-        Title="Отчёт о ДТП" Height="1250" Width="1200">
+        Title="Отчёт о ДТП"
+        Height="1250" Width="1200"
+        Background="#f9f9f9">
+
     <ScrollViewer VerticalScrollBarVisibility="Auto">
         <Grid Margin="20" x:Name="MainGrid">
+            <Grid.Resources>
+                <!-- Общий стиль заголовков секций -->
+                <Style TargetType="GroupBox">
+                    <Setter Property="FontWeight" Value="Bold"/>
+                    <Setter Property="FontSize" Value="16"/>
+                    <Setter Property="Margin" Value="0,10,0,10"/>
+                    <Setter Property="Padding" Value="10"/>
+                    <Setter Property="BorderBrush" Value="#cccccc"/>
+                    <Setter Property="BorderThickness" Value="1"/>
+                    <Setter Property="Background" Value="White"/>
+                </Style>
+
+                <!-- Общий стиль текста -->
+                <Style TargetType="TextBlock">
+                    <Setter Property="FontSize" Value="14"/>
+                    <Setter Property="Foreground" Value="#333"/>
+                </Style>
+
+                <!-- Общий стиль кнопки -->
+                <Style TargetType="Button">
+                    <Setter Property="Background" Value="#2E8B57"/>
+                    <Setter Property="Foreground" Value="White"/>
+                    <Setter Property="FontWeight" Value="Bold"/>
+                    <Setter Property="FontSize" Value="16"/>
+                    <Setter Property="Padding" Value="8,4"/>
+                    <Setter Property="BorderBrush" Value="#1c5c3d"/>
+                    <Setter Property="Cursor" Value="Hand"/>
+                    <Setter Property="Margin" Value="10"/>
+                </Style>
+            </Grid.Resources>
+
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
 
+            <!-- Заголовок -->
             <TextBlock Text="Извещение о дорожно-транспортном происшествии"
-                       FontSize="24" FontWeight="Bold" TextAlignment="Center"
-                       Grid.Row="0" Margin="0,0,0,20"/>
+                       FontSize="28"
+                       FontWeight="Bold"
+                       Foreground="#222"
+                       TextAlignment="Center"
+                       Margin="0,10,0,20"
+                       Grid.Row="0"/>
 
+            <!-- Содержимое -->
             <StackPanel Grid.Row="1" Orientation="Vertical" HorizontalAlignment="Stretch">
                 <!-- Данные о ДТП -->
-                <GroupBox Header="Данные о ДТП" Margin="0,0,0,10">
-                    <Grid>
+                <GroupBox Header="Данные о ДТП">
+                    <Grid Margin="0,5,0,0">
                         <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="250"/>
                             <ColumnDefinition Width="*"/>
                         </Grid.ColumnDefinitions>
                         <Grid.RowDefinitions>
@@ -44,54 +84,60 @@
                     </Grid>
                 </GroupBox>
 
-                <!-- Данные ТС A и B -->
+                <!-- ТС A и B -->
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch">
                     <GroupBox Header="Транспортное средство A" Width="580" Margin="0,0,10,0">
                         <StackPanel>
                             <TextBlock x:Name="VehicleAInfo" TextWrapping="Wrap" Margin="5"/>
-                            <Canvas Height="250" Background="Transparent">
+                            <Border BorderBrush="#ccc" BorderThickness="1" Margin="5">
                                 <Image x:Name="VehicleASchema"
-                       Width="549"
-                       Height="240"
-                       Stretch="Uniform" HorizontalAlignment="Left" VerticalAlignment="Top" Canvas.Top="10" Canvas.Left="10"/>
-                            </Canvas>
+                                       Width="549" Height="240"
+                                       Stretch="Uniform"
+                                       Margin="5"/>
+                            </Border>
                         </StackPanel>
                     </GroupBox>
                     <GroupBox Header="Транспортное средство B" Width="580">
                         <StackPanel>
                             <TextBlock x:Name="VehicleBInfo" TextWrapping="Wrap" Margin="5"/>
-                            <Canvas Height="250" Background="Transparent">
+                            <Border BorderBrush="#ccc" BorderThickness="1" Margin="5">
                                 <Image x:Name="VehicleBSchema"
-                       Width="559"
-                       Height="247"
-                       Stretch="Uniform" HorizontalAlignment="Left" VerticalAlignment="Top" Canvas.Left="6"/>
-                            </Canvas>
+                                       Width="559" Height="247"
+                                       Stretch="Uniform"
+                                       Margin="5"/>
+                            </Border>
                         </StackPanel>
                     </GroupBox>
                 </StackPanel>
 
                 <!-- Схема ДТП -->
-                <GroupBox Header="Схема ДТП" Margin="0,10" Height="294">
-                    <Image x:Name="DTPImage" Height="258" Margin="11,0,12,0" Stretch="None"/>
+                <GroupBox Header="Схема ДТП" Height="294">
+                    <Border BorderBrush="#ccc" BorderThickness="1" Margin="5">
+                        <Image x:Name="DTPImage"
+                               Height="258"
+                               Stretch="None"
+                               Margin="10"/>
+                    </Border>
                 </GroupBox>
 
                 <!-- Повреждения и заметки -->
-                <GroupBox Header="Повреждения и Заметки" Margin="0,10">
-                    <StackPanel>
-                        <TextBlock Text="Повреждения A:" FontWeight="Bold" Margin="5,5,0,0"/>
-                        <TextBlock x:Name="DamageA" TextWrapping="Wrap" Margin="5"/>
+                <GroupBox Header="Повреждения и Заметки">
+                    <StackPanel Margin="5">
+                        <TextBlock Text="Повреждения A:" FontWeight="Bold" Margin="0,5,0,0"/>
+                        <TextBlock x:Name="DamageA" TextWrapping="Wrap" Margin="0,0,0,10"/>
 
-                        <TextBlock Text="Повреждения B:" FontWeight="Bold" Margin="5,10,0,0"/>
-                        <TextBlock x:Name="DamageB" TextWrapping="Wrap" Margin="5"/>
+                        <TextBlock Text="Повреждения B:" FontWeight="Bold" Margin="0,5,0,0"/>
+                        <TextBlock x:Name="DamageB" TextWrapping="Wrap" Margin="0,0,0,10"/>
 
-                        <TextBlock Text="Заметки:" FontWeight="Bold" Margin="5,10,0,0"/>
-                        <TextBlock x:Name="NotesText" TextWrapping="Wrap" Margin="5"/>
+                        <TextBlock Text="Заметки:" FontWeight="Bold" Margin="0,5,0,0"/>
+                        <TextBlock x:Name="NotesText" TextWrapping="Wrap"/>
                     </StackPanel>
                 </GroupBox>
 
-                <!-- Кнопка сохранения -->
-                <Button Content="Сохранить в PDF" Width="200" Height="40" HorizontalAlignment="Center"
-                        Margin="0,20,0,0" Click="SaveToPdf_Click"/>
+                <!-- Кнопка -->
+                <Button Content="Сохранить в PDF" Width="220" Height="45"
+                        HorizontalAlignment="Center"
+                        Click="SaveToPdf_Click"/>
             </StackPanel>
         </Grid>
     </ScrollViewer>
