@@ -1,23 +1,23 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Data;
 using MySql.Data.MySqlClient;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.IO;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Data;
+using System.Windows.Data;
+using System.Windows.Documents;
+using System.Windows.Navigation;
 using System.Data.SqlClient;
 using System.Collections;
 using System.ComponentModel.Design;
-using System.IO;
 
 namespace komissar
 {
@@ -33,23 +33,27 @@ namespace komissar
         private UIElement selectedElement = null;
         private bool isDragging = false;
         private Dictionary<string, List<string>> carData = new Dictionary<string, List<string>>()
-        {
-            { "Toyota", new List<string>() { "Camry", "RAV4", "Corolla", "Highlander" } },
-            { "Honda", new List<string>() { "Civic", "CRV", "Accord", "Pilot" } },
-            { "Ford", new List<string>() { "Focus", "Mustang", "Explorer", "F-150" } },
-            { "Chevrolet", new List<string>() { "Silverado", "Camaro", "Equinox", "Malibu" } },
-            { "BMW", new List<string>() { "3 Series", "5 Series", "X5", "X7" } },
-            { "Mercedes-Benz", new List<string>() { "C-Class", "E-Class", "GLE", "GLS" } },
-            { "Audi", new List<string>() { "A4", "A6", "Q5", "Q7" } },
-            { "Volkswagen", new List<string>() { "Golf", "Jetta", "Tiguan", "Atlas" } },
-            { "Nissan", new List<string>() { "Altima", "Rogue", "Titan", "Sentra" } },
-            { "Hyundai", new List<string>() { "Sonata", "Tucson", "Santa Fe", "Elantra" } },
-            { "Kia", new List<string>() { "Optima", "Sportage", "Sorento", "Telluride" } },
-            { "Subaru", new List<string>() { "Outback", "Forester", "Legacy", "Impreza" } },
-            { "Mazda", new List<string>() { "Mazda3", "CX-5", "CX-9", "Mazda6" } },
-            { "Jeep", new List<string>() { "Grand Cherokee", "Wrangler", "Compass", "Cherokee" } },
-            { "Tesla", new List<string>() { "Model 3", "Model S", "Model X", "Model Y" } }
-        };
+{
+    { "Toyota", new List<string>() { "Camry", "RAV4", "Corolla", "Highlander" } },
+    { "Honda", new List<string>() { "Civic", "CRV", "Accord", "Pilot" } },
+    { "Ford", new List<string>() { "Focus", "Mustang", "Explorer", "F-150" } },
+    { "Chevrolet", new List<string>() { "Silverado", "Camaro", "Equinox", "Malibu" } },
+    { "BMW", new List<string>() { "3 Series", "5 Series", "X5", "X7" } },
+    { "Mercedes-Benz", new List<string>() { "C-Class", "E-Class", "GLE", "GLS" } },
+    { "Audi", new List<string>() { "A4", "A6", "Q5", "Q7" } },
+    { "Volkswagen", new List<string>() { "Golf", "Jetta", "Tiguan", "Atlas" } },
+    { "Nissan", new List<string>() { "Altima", "Rogue", "Titan", "Sentra" } },
+    { "Hyundai", new List<string>() { "Sonata", "Tucson", "Santa Fe", "Elantra" } },
+    { "Kia", new List<string>() { "Optima", "Sportage", "Sorento", "Telluride" } },
+    { "Subaru", new List<string>() { "Outback", "Forester", "Legacy", "Impreza" } },
+    { "Mazda", new List<string>() { "Mazda3", "CX-5", "CX-9", "Mazda6" } },
+    { "Jeep", new List<string>() { "Grand Cherokee", "Wrangler", "Compass", "Cherokee" } },
+    { "Tesla", new List<string>() { "Model 3", "Model S", "Model X", "Model Y" } },
+    { "Freightliner", new List<string>() { "Cascadia", "M2", "120SD", "Business Class" } },
+    { "Ram", new List<string>() { "1500", "2500", "3500", "Chassis Cab" } },
+    { "Harley-Davidson", new List<string>() { "Street 750", "Iron 883", "Road King", "Fat Boy" } },
+    { "Yamaha", new List<string>() { "FZ-07", "MT-09", "YZF-R3", "V-Star 250" } }
+};
         public MainWindow()
         {
             InitializeComponent();
